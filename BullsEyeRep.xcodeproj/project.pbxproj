@@ -15,6 +15,7 @@
 		F914C7D6258C976700028E2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F914C7D4258C976700028E2E /* LaunchScreen.storyboard */; };
 		F914C7E1258C976800028E2E /* BullsEyeRepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914C7E0258C976800028E2E /* BullsEyeRepTests.swift */; };
 		F914C7EC258C976800028E2E /* BullsEyeRepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914C7EB258C976800028E2E /* BullsEyeRepUITests.swift */; };
+		F914C805258CC81E00028E2E /* BullsEyeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914C804258CC81E00028E2E /* BullsEyeGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		F914C7E7258C976800028E2E /* BullsEyeRepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BullsEyeRepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F914C7EB258C976800028E2E /* BullsEyeRepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BullsEyeRepUITests.swift; sourceTree = "<group>"; };
 		F914C7ED258C976800028E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F914C804258CC81E00028E2E /* BullsEyeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BullsEyeGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				F914C7C9258C976000028E2E /* AppDelegate.swift */,
 				F914C7CB258C976000028E2E /* SceneDelegate.swift */,
+				F914C804258CC81E00028E2E /* BullsEyeGame.swift */,
 				F914C7CD258C976000028E2E /* ContentView.swift */,
 				F914C7CF258C976700028E2E /* Assets.xcassets */,
 				F914C7D4258C976700028E2E /* LaunchScreen.storyboard */,
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F914C805258CC81E00028E2E /* BullsEyeGame.swift in Sources */,
 				F914C7CA258C976000028E2E /* AppDelegate.swift in Sources */,
 				F914C7CC258C976000028E2E /* SceneDelegate.swift in Sources */,
 				F914C7CE258C976000028E2E /* ContentView.swift in Sources */,
