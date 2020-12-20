@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    var defaults = UserDefaults.standard
+    
+    enum GameStyle: Int {
+        case moveSlider, guessPosition
+    }
+    
+    var gameStyle: GameStyle {
+        return GameStyle(rawValue: selectedGameStyle) ?? .guessPosition
+    }
     
     @State private var targetGuess = " "
     @State private var sliderValue = 50.0
@@ -22,23 +31,33 @@ struct ContentView: View {
             Form {
                 Section {
                     HStack {
-                        Text("Get close or guess where:")
+                        switch gameStyle {
+                        case .moveSlider:
+                            Text("Get as close as you can to: ")
+                        case .guessPosition:
+                            Text("Guess where the slider is: ")
+                        }
+                        
                         TextField("", text: $targetGuess)
                     }
                     Slider(value: $sliderValue, in: 1...100, minimumValueLabel: Text("1"), maximumValueLabel: Text("100")) {
-                        
                     }
                 }
+                
                 Button("Hit Me!") {
                     
                 }
+                .font(.title)
                 .frame(width: 300, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                
                 Section {
                     Button("Start over") {
                         
                     }
+                    .font(.headline)
                     .frame(width: 300, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
+                
                 Section {
                     Picker(" ", selection: $selectedGameStyle) {
                         ForEach(0..<gameStyles.count) {
@@ -47,18 +66,21 @@ struct ContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
+                
                 Section {
-                    
                     Text("Round: \(round)")
-                    
                     Text("Score: \(score)")
-                    
                 }
                 .frame(width: 300, height: 0, alignment: .center)
             }
+            .onAppear {
+                loadView()
+            }
             .navigationBarTitle(Text("BullsEyeRep"))
-            
         }
+    }
+    
+    func loadView () {
         
     }
 }
