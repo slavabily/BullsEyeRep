@@ -20,11 +20,12 @@ struct ContentView: View {
         return GameStyle(rawValue: selectedGameStyle) ?? .guessPosition
     }
     
-    @State private var targetGuess = " "
+    @State private var targetGuess = String()
     @State private var sliderValue = 50.0
     @State private var selectedGameStyle = 0
     @State private var round = 0
     @State private var score = 0
+    @State private var showingAlert = false
     
     var gameStyles = ["Slide", "Type"]
     
@@ -39,21 +40,26 @@ struct ContentView: View {
                         case .guessPosition:
                             Text("Guess where the slider is: ")
                             Spacer()
-                            TextField("1-100", text: $targetGuess)
+                            TextField(" 1-100", text: $targetGuess)
                                 .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 40, alignment: .trailing)
                                 .border(Color.gray, width: 2)
                                 .cornerRadius(5)
                         }
-                        
-                        
                     }
                     Slider(value: $sliderValue, in: 1...100, minimumValueLabel: Text("1"), maximumValueLabel: Text("100")) {
                     }
                 }
                 
                 Button("Hit Me!") {
-                    
+                    if let guess = Int(targetGuess) {
+                      let difference = bullsEyeGame.check(guess: guess)
+                        // show score Alert
+                        showingAlert.toggle()
+                    }
                 }
+                .alert(isPresented: $showingAlert, content: {
+                    Alert(title: Text("You scored \(bullsEyeGame.scoreRound) points"), message: Text("Target value \(bullsEyeGame.targetValue) "), dismissButton: .default(Text("Ok")))
+                })
                 .font(.title)
                 .frame(width: 300, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
@@ -80,14 +86,11 @@ struct ContentView: View {
                 }
                 .frame(width: 300, height: 0, alignment: .center)
             }
-            .onAppear {
-                loadView()
-            }
             .navigationBarTitle(Text("BullsEyeRep"))
         }
     }
     
-    func loadView() {
+    func checkGuess(_ value: Int) {
          
     }
 }
