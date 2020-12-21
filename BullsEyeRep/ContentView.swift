@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var defaults = UserDefaults.standard
     
+    @ObservedObject var bullsEyeGame = BullsEyeGame()
+    
     enum GameStyle: Int {
         case moveSlider, guessPosition
     }
@@ -33,12 +35,17 @@ struct ContentView: View {
                     HStack {
                         switch gameStyle {
                         case .moveSlider:
-                            Text("Get as close as you can to: ")
+                            Text("Get as close as you can to: \(bullsEyeGame.targetValue)")
                         case .guessPosition:
                             Text("Guess where the slider is: ")
+                            Spacer()
+                            TextField("1-100", text: $targetGuess)
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 40, alignment: .trailing)
+                                .border(Color.gray, width: 2)
+                                .cornerRadius(5)
                         }
                         
-                        TextField("", text: $targetGuess)
+                        
                     }
                     Slider(value: $sliderValue, in: 1...100, minimumValueLabel: Text("1"), maximumValueLabel: Text("100")) {
                     }
@@ -80,8 +87,8 @@ struct ContentView: View {
         }
     }
     
-    func loadView () {
-        
+    func loadView() {
+         
     }
 }
 

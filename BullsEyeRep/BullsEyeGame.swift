@@ -7,10 +7,10 @@
 
 import Foundation
 
-class BullsEyeGame {
+class BullsEyeGame: ObservableObject {
   var round = 0
   let startValue = 50
-  var targetValue = 50
+  @Published var targetValue = 50
   var scoreRound = 0
   var scoreTotal = 0
   
