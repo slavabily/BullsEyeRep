@@ -63,7 +63,8 @@ struct ContentView: View {
                 .frame(width: 300, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Section {
                     Button("Start over") {
-                        
+                        game.startNewGame()
+                        updateView()
                     }
                     .font(.headline)
                     .frame(width: 300, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
