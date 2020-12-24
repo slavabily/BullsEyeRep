@@ -29,6 +29,7 @@ struct ContentView: View {
     @State private var scoreTotal = 0
     
     @State private var showingAlert = false
+    @State private var showingNanAlert = false
     
     var gameStyles = ["Slide", "Type"]
     
@@ -55,6 +56,9 @@ struct ContentView: View {
                 Button("Hit Me!") {
                     checkGuess()
                 }
+                .alert(isPresented: $showingNanAlert, content: { () -> Alert in
+                    Alert(title: Text("Not A Number"), message: Text("Please enter a positive number"), dismissButton: .default(Text("Ok")))
+                })
                 .font(.title)
                 .frame(width: 300, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Section {
@@ -86,11 +90,11 @@ struct ContentView: View {
             }
             .navigationBarTitle(Text("BullsEyeRep"))
             .alert(isPresented: $showingAlert, content: {
-                Alert(title: Text("You scored \(game.scoreRound) points"), message: Text("Target value \(game.targetValue) "), dismissButton: .default(Text("Ok")) {
-                    print("\n targetValue = \(game.targetValue)")
-                    game.startNewRound()
-                    updateView()
-                })
+                   Alert(title: Text("You scored \(game.scoreRound) points"), message: Text("Target value \(game.targetValue) "), dismissButton: .default(Text("Ok")) {
+                        print("\n targetValue = \(game.targetValue)")
+                        game.startNewRound()
+                        updateView()
+                    })
             })
         }
     }
@@ -100,7 +104,6 @@ struct ContentView: View {
         switch gameStyle {
         case .moveSlider:
             guess = Int(lround(sliderValue))
-            
         case .guessPosition:
             guess = Int(targetGuessText)
         }
@@ -109,7 +112,7 @@ struct ContentView: View {
             game.check(guess: guess)
             showingAlert.toggle()
         } else {
-            //          showNaNAlert()
+            showingNanAlert.toggle()
         }
     }
     
