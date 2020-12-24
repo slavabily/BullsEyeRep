@@ -8,11 +8,11 @@
 import Foundation
 
 class BullsEyeGame: ObservableObject {
-  var round = 0
-  let startValue = 50
+  @Published var round = 0
+  @Published var startValue = 50
   @Published var targetValue = 50
-  var scoreRound = 0
-  var scoreTotal = 0
+  @Published var scoreRound = 0
+  @Published var scoreTotal = 0
   
   init() {
     startNewGame()
@@ -35,7 +35,9 @@ class BullsEyeGame: ObservableObject {
     let difference = abs(targetValue - guess)
 //    let difference = guess - targetValue
     scoreRound = 100 - difference
+    print("\n model scoreRound = \(scoreRound)")
     scoreTotal = scoreTotal + scoreRound
+    print("model scoreTotal = \(scoreTotal)")
     
     return difference
   }
