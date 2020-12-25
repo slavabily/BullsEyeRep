@@ -31,6 +31,8 @@ struct ContentView: View {
     @State private var showingAlert = false
     @State private var showingNanAlert = false
     
+    let gameStyleRange = 0..<2
+    
     var gameStyles = ["Slide", "Type"]
     
     var body: some View {
@@ -75,6 +77,8 @@ struct ContentView: View {
                             Text(gameStyles[$0])
                         }
                     }.onChange(of: selectedGameStyle, perform: { value in
+                        print("\n value = \(value)")
+                        defaults.setValue(value, forKey: "gameStyle")
                         updateView()
                     })
                     .pickerStyle(SegmentedPickerStyle())
@@ -87,6 +91,14 @@ struct ContentView: View {
                 .frame(width: 300, height: 0, alignment: .center)
             }
             .onAppear {
+                let defaultGameStyle = defaults.integer(forKey: "gameStyle")
+                
+                if gameStyleRange.contains(defaultGameStyle) {
+                    print("defaultGameStyle = \(defaultGameStyle)")
+                    selectedGameStyle = defaultGameStyle
+                } else {
+                    defaults.set(1, forKey: "gameStyle")
+                }
                 updateView()
             }
             .navigationBarTitle(Text("BullsEyeRep"))
